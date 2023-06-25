@@ -1,0 +1,30 @@
+##################### SPRING GLOBAL #################################
+spring:
+  ##################### DATA SOURCE #################################
+#  datasource:
+#    driver-class-name: org.postgresql.Driver
+#    initialization-mode: always
+#    ##################### MY SQL DATABASE #################################
+#    url: jdbc:postgresql://automotive_selection_db_postgres:5432/automotive_selection
+#    username: postgres
+#    password: admin
+#  ##################### JPA USED SPRING DATA #################################
+#  jpa:
+#    hibernate:
+#      ddl-auto: create
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.PostgreSQLDialect
+#    show-sql: true
+#  ##################### SPRING MAIL PROPERTIES #################################
+#  mail:
+#    host: smtp.gmail.com
+#    port: 587
+#    username:
+#    password:
+#    properties:
+#      mail:
+#        smtp:
+#          auth: true
+#          starttls:
+#            enable: true
