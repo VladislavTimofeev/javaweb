@@ -20,8 +20,8 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public int save(UserEntity user) {
         return jdbcTemplate.update(
-                "insert into users (id) values(?)",
-                user.getId());
+                "insert into users (id, firstName, lastName) values(?,?,?)",
+                user.getId(), user.getFirstName(), user.getLastName());
     }
 
 

@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
     public UserDto findById(Long id) {
 
         UserEntity userEntity = userRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("User.java not found"));
 
         return userMapper.convertToDto(userEntity);
     }

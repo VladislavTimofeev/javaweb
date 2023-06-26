@@ -33,6 +33,8 @@ public class AppRunner implements CommandLineRunner {
         jdbcTemplate.execute("CREATE TABLE users\n" +
                 "(\n" +
                 "    id SERIAL PRIMARY KEY\n" +
+                "   firstName varchar(30)\n" +
+                "   lastName varchar(30)\n" +
                 ");");
 
 
