@@ -32,7 +32,7 @@ public class UserRepositoryImpl implements UserRepository {
                 new Object[]{id},
                 (rs, rowNum) ->
                         Optional.of(new UserEntity(
-                                rs.getLong("id")
+                                rs.getLong("id"), rs.getString("firstName"), rs.getString("lastName")
                         ))
         );
     }

@@ -6,5 +6,5 @@ CREATE TABLE users
 );
 
 insert into users(id, firstName, lastName)
-values (0, Vasya, Bobrikov);
+values (0, "Vasya", "Bobrikov");
 
