@@ -3,10 +3,13 @@ package by.iba.service;
 import by.iba.domain.UserEntity;
 import by.iba.dto.UserDto;
 import by.iba.exception.ResourceNotFoundException;
+import by.iba.exception.ServiceException;
 import by.iba.mapper.UserMapper;
 import by.iba.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -27,5 +30,28 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new ResourceNotFoundException("User not found"));
 
         return userMapper.convertToDto(userEntity);
+    }
+
+    @Override
+    public UserDto save(UserDto userDto) {
+
+        UserEntity entityToSave = userMapper.convertToEntity(userDto);
+//        if (validation by user email already exist)
+//                        .orElseThrow(() -> new ServiceException("User exist"));
+
+        int count = userRepository.save(entityToSave);
+
+        System.out.println(count);
+
+        return userDto;
+
+//        return userMapper.convertToDto(userEntity);
+    }
+
+    @Override
+    public List<UserDto> findAll() {
+        List<UserEntity> users = userRepository.findAll();
+
+        return userMapper.convertToList(users);
     }
 }

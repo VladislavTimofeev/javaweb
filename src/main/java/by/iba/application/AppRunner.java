@@ -32,13 +32,17 @@ public class AppRunner implements CommandLineRunner {
         jdbcTemplate.execute("DROP TABLE books IF EXISTS");
         jdbcTemplate.execute("CREATE TABLE users\n" +
                 "(\n" +
-                "    id SERIAL PRIMARY KEY\n" +
+                "    id SERIAL PRIMARY KEY,\n" +
+                "   firstName varchar(30),\n" +
+                "   lastName varchar(30)\n" +
                 ");");
 
 
-        userRepository.save(new UserEntity(1L));
+        userRepository.save(new UserEntity(1L, "vasya", "lastName"));
 
         System.out.println(userRepository.findById(1L).get().getId());
+        System.out.println(userRepository.findById(1L).get().getFirstName());
+        System.out.println(userRepository.findById(1L).get().getLastName());
 
     }
 }
