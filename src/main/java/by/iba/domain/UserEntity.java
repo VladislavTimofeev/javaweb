@@ -6,6 +6,10 @@ public class UserEntity {
     private String firstName;
     private String lastName;
 
+    public UserEntity(){
+
+    }
+
     public UserEntity(Long id, String firstName, String lastName) {
         this.id = id;
         this.firstName = firstName;
@@ -22,5 +26,13 @@ public class UserEntity {
 
     public String getLastName() {
         return lastName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }

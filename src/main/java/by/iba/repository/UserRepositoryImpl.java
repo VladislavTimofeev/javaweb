@@ -1,6 +1,7 @@
 package by.iba.repository;
 
 import by.iba.domain.UserEntity;
+import by.iba.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -12,6 +13,7 @@ import java.util.Optional;
 public class UserRepositoryImpl implements UserRepository {
 
     private static final String SELECT_FROM_USERS_WHERE_ID = "select * from users where id = ?";
+//    private static final String PUT_IN_USERS = "INSERT INTO USERS VALUES (?, ?, ?)";
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -36,4 +38,11 @@ public class UserRepositoryImpl implements UserRepository {
                         ))
         );
     }
+
+//    @Override
+//    public Optional<UserEntity> addUser(UserDto userDto) {
+//        return this.jdbcTemplate.update("INSERT INTO users (firstName, lastName) VALUES (?,?)",
+//                userDto.setFirstName("firstName"),userDto.setLastName("lastName")
+//        );
+//    }
 }

@@ -8,6 +8,8 @@ public interface UserRepository {
 
     Optional<UserEntity> findById(Long id);
 
+    Optional<UserEntity> addUser();
+
     int save(UserEntity book);
 
 }

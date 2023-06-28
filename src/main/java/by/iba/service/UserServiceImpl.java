@@ -28,4 +28,13 @@ public class UserServiceImpl implements UserService {
 
         return userMapper.convertToDto(userEntity);
     }
+
+    @Override
+    public UserDto addUser(UserDto userDto) {
+
+        UserEntity userEntity = userRepository.addUser()
+                .orElseThrow(() -> new ResourceNotFoundException("User exist"));
+
+        return userMapper.convertToDto(userEntity);
+    }
 }
