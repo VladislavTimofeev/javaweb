@@ -8,7 +8,7 @@ public class UserDto implements Serializable {
     private String firstName;
     private String lastName;
 
-    public UserDto(){
+    public UserDto() {
 
     }
 
@@ -36,5 +36,9 @@ public class UserDto implements Serializable {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

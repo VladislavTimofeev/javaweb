@@ -2,10 +2,12 @@ package by.iba.repository;
 
 import by.iba.domain.UserEntity;
 import by.iba.dto.UserDto;
+import by.iba.repository.mapper.UserRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -13,7 +15,7 @@ import java.util.Optional;
 public class UserRepositoryImpl implements UserRepository {
 
     private static final String SELECT_FROM_USERS_WHERE_ID = "select * from users where id = ?";
-//    private static final String PUT_IN_USERS = "INSERT INTO USERS VALUES (?, ?, ?)";
+    private static final String SELECT_ALL_USERS = "select * from users";
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -24,6 +26,15 @@ public class UserRepositoryImpl implements UserRepository {
         return jdbcTemplate.update(
                 "insert into users (id, firstName, lastName) values(?,?,?)",
                 user.getId(), user.getFirstName(), user.getLastName());
+    }
+
+    @Override
+    public List<UserEntity> findAll() {
+        return jdbcTemplate.query(
+                SELECT_ALL_USERS,
+                new UserRowMapper()
+        );
+
     }
 
 
@@ -39,10 +50,4 @@ public class UserRepositoryImpl implements UserRepository {
         );
     }
 
-//    @Override
-//    public Optional<UserEntity> addUser(UserDto userDto) {
-//        return this.jdbcTemplate.update("INSERT INTO users (firstName, lastName) VALUES (?,?)",
-//                userDto.setFirstName("firstName"),userDto.setLastName("lastName")
-//        );
-//    }
 }
