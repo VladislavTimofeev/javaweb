@@ -1,6 +1,8 @@
 package by.iba.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BookDto implements Serializable {
 
@@ -8,7 +10,9 @@ public class BookDto implements Serializable {
     private int numberOfPages;
     private String title;
 
-    public BookDto(){
+    private List<AuthorDto> authors = new ArrayList<>();
+
+    public BookDto() {
 
     }
 
@@ -40,5 +44,13 @@ public class BookDto implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public List<AuthorDto> getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(List<AuthorDto> authors) {
+        this.authors = authors;
     }
 }

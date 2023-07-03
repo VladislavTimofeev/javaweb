@@ -25,7 +25,7 @@
         <!-- dependencies versions-->
         <spring-global-version>2.3.3.RELEASE</spring-global-version>
         <mysql-connector-java-version>8.0.17</mysql-connector-java-version>
-        <postgres.version>42.1.4</postgres.version>
+        <postgres.version>42.6.0</postgres.version>
 
         <start-class>by.iba.application.AppRunner</start-class>
     </properties>
@@ -65,18 +65,18 @@
 <!--            <scope>runtime</scope>-->
 <!--        </dependency>-->
 
-<!--        <dependency>-->
-<!--            <groupId>org.postgresql</groupId>-->
-<!--            <artifactId>postgresql</artifactId>-->
-<!--            <version>${postgres.version}</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.6.0</version>
+        </dependency>
 
 
         <!-- in-memory database -->
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.h2database</groupId>-->
+<!--            <artifactId>h2</artifactId>-->
+<!--        </dependency>-->
 
     </dependencies>
 

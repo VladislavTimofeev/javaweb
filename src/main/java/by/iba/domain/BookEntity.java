@@ -1,12 +1,16 @@
 package by.iba.domain;
 
-public class BookEntity {
+import java.util.ArrayList;
+import java.util.List;
 
+public class BookEntity {
     private Long id;
     private int numberOfPages;
     private String title;
 
-    public BookEntity(){
+    private List<AuthorEntity> authors = new ArrayList<>();
+
+    public BookEntity() {
 
     }
 
@@ -38,5 +42,13 @@ public class BookEntity {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public List<AuthorEntity> getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(List<AuthorEntity> authors) {
+        this.authors = authors;
     }
 }

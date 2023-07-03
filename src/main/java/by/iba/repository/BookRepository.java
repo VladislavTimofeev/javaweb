@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface BookRepository {
 
-    int save(BookEntity book);
+    long save(BookEntity book);
 
     List<BookEntity> findAll();
 
