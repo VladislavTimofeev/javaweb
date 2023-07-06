@@ -9,6 +9,8 @@ public class BookDto implements Serializable {
     private Long id;
     private int numberOfPages;
     private String title;
+    private int releaseYear;
+
 
     private List<AuthorDto> authors = new ArrayList<>();
 
@@ -16,10 +18,11 @@ public class BookDto implements Serializable {
 
     }
 
-    public BookDto(Long id, int numberOfPages, String title) {
+    public BookDto(Long id, int numberOfPages, String title, int releaseYear) {
         this.id = id;
         this.numberOfPages = numberOfPages;
         this.title = title;
+        this.releaseYear = releaseYear;
     }
 
     public Long getId() {
@@ -44,6 +47,14 @@ public class BookDto implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public int getReleaseYear() {
+        return releaseYear;
+    }
+
+    public void setReleaseYear(int releaseYear) {
+        this.releaseYear = releaseYear;
     }
 
     public List<AuthorDto> getAuthors() {

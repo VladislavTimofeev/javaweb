@@ -32,11 +32,12 @@ public class BookRepositoryImpl implements BookRepository {
     @Override
     public long save(BookEntity book) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
-        String sql = "insert into books (numberOfPages, title) values(?,?)";
+        String sql = "insert into books (numberOfPages, title, releaseYear) values(?,?,?)";
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, book.getNumberOfPages());
             ps.setString(2, book.getTitle());
+            ps.setInt(3,book.getReleaseYear());
             return ps;
         }, keyHolder);
         return Long.valueOf(String.valueOf(keyHolder.getKey()));
@@ -57,7 +58,8 @@ public class BookRepositoryImpl implements BookRepository {
                 new Object[]{id},
                 (rs, rowNum) ->
                         Optional.of(new BookEntity(
-                                rs.getLong("id"), rs.getInt("numberOfPages"), rs.getString("title")
+                                rs.getLong("id"), rs.getInt("numberOfPages"),
+                                rs.getString("title"), rs.getInt("releaseYear")
                         ))
         );
     }
