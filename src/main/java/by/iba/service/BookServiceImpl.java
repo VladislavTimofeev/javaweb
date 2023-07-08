@@ -22,7 +22,6 @@ public class BookServiceImpl implements BookService {
     private final AuthorRepository authorRepository;
     private final BookAuthorRepository bookAuthorRepository;
 
-    @Autowired
     public BookServiceImpl(BookMapper bookMapper, BookRepository bookRepository,
                            AuthorRepository authorRepository, BookAuthorRepository bookAuthorRepository) {
         this.bookMapper = bookMapper;

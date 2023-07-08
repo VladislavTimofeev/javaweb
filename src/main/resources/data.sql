@@ -2,7 +2,10 @@ CREATE TABLE users
 (
     id        SERIAL PRIMARY KEY,
     firstName varchar(30) NOT NULL,
-    lastName  varchar(30) NOT NULL
+    lastName  varchar(30) NOT NULL,
+    age integer NOT NULL,
+    email varchar(30) NOT NULL,
+    dateOfBirth date NOT NULL
 );
 
 CREATE TABLE books
@@ -16,7 +19,9 @@ CREATE TABLE authors
 (
     id        SERIAL PRIMARY KEY,
     firstName varchar(30) NOT NULL,
-    lastName  varchar(30) NOT NULL
+    lastName  varchar(30) NOT NULL,
+    dateOfBirth date NOT NULL,
+    country varchar(30) NOT NULL
 );
 
 CREATE TABLE books_authors

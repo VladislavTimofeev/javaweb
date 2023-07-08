@@ -7,16 +7,17 @@ import by.iba.mapper.AuthorMapper;
 import by.iba.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 
 @Service
+@Validated
 public class AuthorServiceImpl implements AuthorService {
 
     private final AuthorMapper authorMapper;
     private final AuthorRepository authorRepository;
 
-    @Autowired
     public AuthorServiceImpl(AuthorMapper authorMapper, AuthorRepository authorRepository) {
         this.authorMapper = authorMapper;
         this.authorRepository = authorRepository;

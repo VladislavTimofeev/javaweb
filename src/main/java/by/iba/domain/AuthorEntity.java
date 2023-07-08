@@ -1,19 +1,26 @@
 package by.iba.domain;
 
+import java.util.Date;
+
 public class AuthorEntity {
 
     private Long id;
     private String firstName;
     private String lastName;
+    private Date dateOfBirth;
+    private String country;
+
 
     public AuthorEntity() {
 
     }
 
-    public AuthorEntity(Long id, String firstName, String lastName) {
+    public AuthorEntity(Long id, String firstName, String lastName, Date dateOfBirth, String country) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.dateOfBirth = dateOfBirth;
+        this.country = country;
     }
 
     public Long getId() {
@@ -40,4 +47,19 @@ public class AuthorEntity {
         this.lastName = lastName;
     }
 
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
 }
