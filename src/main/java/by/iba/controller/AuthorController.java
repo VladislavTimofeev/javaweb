@@ -17,4 +17,10 @@ public interface AuthorController {
 
     @PostMapping
     ResponseEntity<AuthorDto> save(@RequestBody AuthorDto authorDto);
+
+    @DeleteMapping("/{id}")
+    ResponseEntity<AuthorDto> deleteAuthorById(@PathVariable Long id);
+
+    @PatchMapping("/{id}")
+    ResponseEntity<AuthorDto> restoreAuthorById(@PathVariable Long id, AuthorDto authorDto);
 }

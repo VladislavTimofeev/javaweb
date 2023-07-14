@@ -13,14 +13,14 @@ public class AuthorMapper {
     public AuthorDto convertToDto(AuthorEntity author) {
 
         AuthorDto authorDto = new AuthorDto(author.getId(), author.getFirstName(), author.getLastName(),
-                author.getDateOfBirth(), author.getCountry());
+                author.getDateOfBirth(), author.getCountry(), author.isDeleted());
         return authorDto;
     }
 
     public AuthorEntity convertToEntity(AuthorDto authorDto){
 
         AuthorEntity authorEntity = new AuthorEntity(authorDto.getId(), authorDto.getFirstName(), authorDto.getLastName(),
-                authorDto.getDateOfBirth(), authorDto.getCountry());
+                authorDto.getDateOfBirth(), authorDto.getCountry(), authorDto.isDeleted());
         return authorEntity;
     }
 
