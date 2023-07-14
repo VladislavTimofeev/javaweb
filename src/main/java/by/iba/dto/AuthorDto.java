@@ -22,18 +22,20 @@ public class AuthorDto implements Serializable {
     @NotBlank(message = "The country is required.")
     @Size(min = 3, max = 30)
     private String country;
+    private boolean isDeleted;
 
 
-    public AuthorDto(){
+    public AuthorDto() {
 
     }
 
-    public AuthorDto(Long id, String firstName, String lastName, Date dateOfBirth, String country) {
+    public AuthorDto(Long id, String firstName, String lastName, Date dateOfBirth, String country, boolean isDeleted) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
         this.country = country;
+        this.isDeleted = isDeleted;
     }
 
     public Long getId() {
@@ -74,5 +76,13 @@ public class AuthorDto implements Serializable {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public boolean isDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(boolean isDeleted) {
+        this.isDeleted = isDeleted;
     }
 }

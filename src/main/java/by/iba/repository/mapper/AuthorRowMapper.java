@@ -16,6 +16,7 @@ public class AuthorRowMapper implements RowMapper<AuthorEntity> {
         authorEntity.setLastName(rs.getString("lastName"));
         authorEntity.setDateOfBirth(rs.getDate("dateOfBirth"));
         authorEntity.setCountry(rs.getString("country"));
+        authorEntity.setDeleted(rs.getBoolean("isDeleted"));
 
         return authorEntity;
     }

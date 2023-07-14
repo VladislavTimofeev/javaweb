@@ -9,18 +9,20 @@ public class AuthorEntity {
     private String lastName;
     private Date dateOfBirth;
     private String country;
+    private boolean isDeleted;
 
 
     public AuthorEntity() {
 
     }
 
-    public AuthorEntity(Long id, String firstName, String lastName, Date dateOfBirth, String country) {
+    public AuthorEntity(Long id, String firstName, String lastName, Date dateOfBirth, String country, boolean isDeleted) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
         this.country = country;
+        this.isDeleted = isDeleted;
     }
 
     public Long getId() {
@@ -61,5 +63,13 @@ public class AuthorEntity {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public boolean isDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(boolean isDeleted) {
+        this.isDeleted = isDeleted;
     }
 }

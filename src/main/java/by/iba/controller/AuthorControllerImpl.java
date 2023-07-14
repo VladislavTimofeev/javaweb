@@ -1,7 +1,9 @@
 package by.iba.controller;
 
 import by.iba.dto.AuthorDto;
+import by.iba.repository.AuthorRepository;
 import by.iba.service.AuthorService;
+import org.apache.coyote.Response;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,9 +18,11 @@ import java.util.List;
 public class AuthorControllerImpl implements AuthorController {
 
     private final AuthorService authorService;
+    private final AuthorRepository authorRepository;
 
-    public AuthorControllerImpl(AuthorService authorService) {
+    public AuthorControllerImpl(AuthorService authorService, AuthorRepository authorRepository) {
         this.authorService = authorService;
+        this.authorRepository = authorRepository;
     }
 
     @Override
@@ -47,5 +51,30 @@ public class AuthorControllerImpl implements AuthorController {
         httpHeaders.setLocation(ServletUriComponentsBuilder.fromCurrentRequest().path("/authors/" + addedAuthor.getId())
                 .buildAndExpand(addedAuthor.getId()).toUri());
         return new ResponseEntity<>(addedAuthor, httpHeaders, HttpStatus.CREATED);
+    }
+
+    @Override
+    public ResponseEntity<AuthorDto> deleteAuthorById(@PathVariable Long id) {
+        try {
+            int result = authorRepository.deleteAuthorById(id);
+            if (result == 0) {
+                return new ResponseEntity<>(HttpStatus.OK);
+            }
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @Override
+    public ResponseEntity<AuthorDto> restoreAuthorById(Long id, @RequestBody AuthorDto authorDto) {
+         AuthorDto authorDto1 = authorService.findById(id);
+         if (authorDto1 != null){
+             authorDto1.setId(id);
+             authorRepository.restoreAuthorById(id);
+             return new ResponseEntity<>(HttpStatus.OK);
+         } else {
+             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+         }
     }
 }
