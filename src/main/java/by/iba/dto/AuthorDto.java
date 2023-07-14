@@ -1,10 +1,13 @@
 package by.iba.dto;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
 
-public class UserDto implements Serializable {
+public class AuthorDto implements Serializable {
 
     private Long id;
     @NotBlank(message = "The firstName is required.")
@@ -13,28 +16,24 @@ public class UserDto implements Serializable {
     @NotBlank(message = "The lastName is required.")
     @Size(min = 3, max = 30)
     private String lastName;
-    @NotNull(message = "The age is required.")
-    @Positive
-    private int age;
-    @NotEmpty(message = "The email address is required.")
-    @Email(message = "The email address is invalid.")
-    private String email;
     @NotNull(message = "The date of birth is required.")
     @Past(message = "The date of birth must be in the past.")
     private Date dateOfBirth;
+    @NotBlank(message = "The country is required.")
+    @Size(min = 3, max = 30)
+    private String country;
 
 
-    public UserDto() {
+    public AuthorDto(){
 
     }
 
-    public UserDto(Long id, String firstName, String lastName, int age, String email, Date dateOfBirth) {
+    public AuthorDto(Long id, String firstName, String lastName, Date dateOfBirth, String country) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.age = age;
-        this.email = email;
         this.dateOfBirth = dateOfBirth;
+        this.country = country;
     }
 
     public Long getId() {
@@ -61,27 +60,19 @@ public class UserDto implements Serializable {
         this.lastName = lastName;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public Date getDateOfBirth() {
         return dateOfBirth;
     }
 
     public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 }

@@ -12,4 +12,6 @@ public interface UserRepository {
     int save(UserEntity user);
 
     List<UserEntity> findAll();
+
+    Optional<UserEntity> findByEmail(String email);
 }

@@ -1,7 +1,6 @@
 package by.iba.repository;
 
 import by.iba.domain.UserEntity;
-import by.iba.dto.UserDto;
 import by.iba.repository.mapper.UserRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -16,6 +15,10 @@ public class UserRepositoryImpl implements UserRepository {
 
     private static final String SELECT_FROM_USERS_WHERE_ID = "select * from users where id = ?";
     private static final String SELECT_ALL_USERS = "select * from users";
+    private static final String INSERT_INTO_USERS = "insert into users (firstName, lastName, age, " +
+            "email, dateOfBirth) values(?,?,?,?,?)";
+
+    private static final String SELECT_USER_EMAIL = "select * from users where email = ?";
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -24,8 +27,9 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public int save(UserEntity user) {
         return jdbcTemplate.update(
-                "insert into users (id, firstName, lastName) values(?,?,?)",
-                user.getId(), user.getFirstName(), user.getLastName());
+                INSERT_INTO_USERS,
+                user.getFirstName(),user.getLastName(),user.getAge(),user.getEmail(),user.getDateOfBirth()
+        );
     }
 
     @Override
@@ -37,6 +41,18 @@ public class UserRepositoryImpl implements UserRepository {
 
     }
 
+    @Override
+    public Optional<UserEntity> findByEmail(String email) {
+        return jdbcTemplate.queryForObject(
+                SELECT_USER_EMAIL,
+                new Object[]{email},
+                (rs, rowNum) ->
+                        Optional.of(new UserEntity(
+                                rs.getLong("id"), rs.getString("firstName"), rs.getString("lastName"),
+                                rs.getInt("age"), rs.getString("email"), rs.getDate("dateOfBirth")))
+        );
+    }
+
 
     @Override
     public Optional<UserEntity> findById(Long id) {
@@ -45,8 +61,8 @@ public class UserRepositoryImpl implements UserRepository {
                 new Object[]{id},
                 (rs, rowNum) ->
                         Optional.of(new UserEntity(
-                                rs.getLong("id"), rs.getString("firstName"), rs.getString("lastName")
-                        ))
+                                rs.getLong("id"), rs.getString("firstName"), rs.getString("lastName"),
+                                rs.getInt("age"), rs.getString("email"), rs.getDate("dateOfBirth")))
         );
     }
 
