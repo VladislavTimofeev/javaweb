@@ -15,7 +15,6 @@ public interface UserController {
     @GetMapping
     ResponseEntity<List<UserDto>> findAll();
 
-
     @PostMapping
     ResponseEntity<UserDto> save(@RequestBody UserDto userDto);
 

@@ -1,6 +1,5 @@
 package by.iba.controller;
 
-import by.iba.domain.UserEntity;
 import by.iba.dto.UserDto;
 import by.iba.service.UserService;
 import org.springframework.http.HttpHeaders;
