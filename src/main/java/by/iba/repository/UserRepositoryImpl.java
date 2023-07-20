@@ -18,7 +18,7 @@ public class UserRepositoryImpl implements UserRepository {
     private static final String INSERT_INTO_USERS = "insert into users (firstName, lastName, age, " +
             "email, dateOfBirth) values(?,?,?,?,?)";
 
-    private static final String SELECT_USER_EMAIL = "select * from users where email = ?";
+    private static final String SELECT_USER_BY_EMAIL = "select * from users where email = ?";
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -28,7 +28,7 @@ public class UserRepositoryImpl implements UserRepository {
     public int save(UserEntity user) {
         return jdbcTemplate.update(
                 INSERT_INTO_USERS,
-                user.getFirstName(),user.getLastName(),user.getAge(),user.getEmail(),user.getDateOfBirth()
+                new UserRowMapper()
         );
     }
 
@@ -44,7 +44,7 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public Optional<UserEntity> findByEmail(String email) {
         return jdbcTemplate.queryForObject(
-                SELECT_USER_EMAIL,
+                SELECT_USER_BY_EMAIL,
                 new Object[]{email},
                 (rs, rowNum) ->
                         Optional.of(new UserEntity(

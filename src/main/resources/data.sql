@@ -12,7 +12,8 @@ CREATE TABLE books
 (
     id        SERIAL PRIMARY KEY,
     numberOfPages integer,
-    title  varchar(30)
+    title  varchar(30),
+    releaseYear integer
 );
 
 CREATE TABLE authors
