@@ -1,0 +1,47 @@
+version: '3'
+
+services:
+
+  postgres:
+    image: postgres:alpine3.18
+    ports:
+      - "5432:5432"
+    restart: always
+    environment:
+      POSTGRES_DB: "db"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "testing321"
+
+  books-service:
+    build:
+      context: ../books-service
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    restart: always
+    depends_on:
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: testing321
+      #- BROKER=host.docker.internal:29092
+
+  orders-service:
+    build:
+      context: ../orders-service
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    restart: always
+    depends_on:
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: testing321
+      #- BROKER=host.docker.internal:29092
+
+    #environment:
+      #- BROKER=host.docker.internal:29093
+      #- MESSAGE_PROCESSING_TIME=2000

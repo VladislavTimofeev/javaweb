@@ -4,6 +4,7 @@ import by.iba.repository.AuthorRepository;
 import by.iba.repository.BookRepository;
 import by.iba.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,7 +19,12 @@ public class BooksAppRunner implements CommandLineRunner {
 
     @Autowired
     JdbcTemplate jdbcTemplate;
-
+    @Value("${spring.datasource.url}")
+    private String url;
+    @Value("${spring.datasource.username}")
+    private String username;
+    @Value("${spring.datasource.password}")
+    private String password;
     @Autowired
     private UserRepository userRepository;
 
@@ -55,7 +61,8 @@ public class BooksAppRunner implements CommandLineRunner {
 
         try {
             connection = DriverManager
-                    .getConnection("jdbc:postgresql://localhost:5432/dlib", "postgres", "testing321");
+                    .getConnection(url, username, password);
+                    //.getConnection("jdbc:postgresql://localhost:5432/dlib", "postgres", "testing321");
 
         } catch (SQLException e) {
             System.out.println("Connection Failed");

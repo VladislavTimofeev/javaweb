@@ -27,7 +27,7 @@
         <mysql-connector-java-version>8.0.17</mysql-connector-java-version>
         <postgres.version>42.6.0</postgres.version>
 
-        <start-class>by.iba.application.BooksAppRunner</start-class>
+        <start-class>by.iba.application.OrdersAppRunner</start-class>
     </properties>
 
 

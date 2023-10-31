@@ -12,7 +12,7 @@
 
 
     <groupId>by.iba</groupId>
-    <artifactId>book-service</artifactId>
+    <artifactId>books-service</artifactId>
     <packaging>jar</packaging>
     <version>1.0.0</version>
 
