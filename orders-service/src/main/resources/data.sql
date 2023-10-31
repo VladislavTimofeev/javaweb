@@ -32,6 +32,14 @@ CREATE TABLE books_authors
     author_id integer
 );
 
+CREATE TABLE orders
+(
+    id        SERIAL PRIMARY KEY,
+    orderDate date,
+    orderCost real,
+    userId varchar(30)
+);
+
 
 
 -- insert into users(id, firstName, lastName)
