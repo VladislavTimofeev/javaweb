@@ -11,6 +11,9 @@ services:
       POSTGRES_DB: "db"
       POSTGRES_USER: "postgres"
       POSTGRES_PASSWORD: "testing321"
+      POSTGRES_INITDB_SCRIPT: /docker-entrypoint-initdb.d/data.sql
+    volumes:
+      - ./data.sql:/docker-entrypoint-initdb.d/data.sql
 
   books-service:
     build:
@@ -22,10 +25,10 @@ services:
     depends_on:
       - postgres
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/db
-      SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: testing321
-      #- BROKER=host.docker.internal:29092
+      #SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/db
+      #SPRING_DATASOURCE_USERNAME: postgres
+      #SPRING_DATASOURCE_PASSWORD: testing321
+      - BROKER=host.docker.internal:29092
 
   orders-service:
     build:
@@ -37,11 +40,10 @@ services:
     depends_on:
       - postgres
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/db
-      SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: testing321
-      #- BROKER=host.docker.internal:29092
-
-    #environment:
-      #- BROKER=host.docker.internal:29093
-      #- MESSAGE_PROCESSING_TIME=2000
+      #SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/db
+      #SPRING_DATASOURCE_USERNAME: postgres
+      #SPRING_DATASOURCE_PASSWORD: testing321
+      - BROKER=host.docker.internal:29093
+      - MESSAGE_PROCESSING_TIME=2000
+      #BROKER: host.docker.internal:29093
+      #MESSAGE: MESSAGE_PROCESSING_TIME=2000

@@ -1,10 +1,11 @@
-package by.iba.service;
+package by.iba.service.impl;
 
 import by.iba.domain.AuthorEntity;
 import by.iba.dto.AuthorDto;
 import by.iba.exception.ResourceNotFoundException;
 import by.iba.mapper.AuthorMapper;
 import by.iba.repository.AuthorRepository;
+import by.iba.service.AuthorService;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 

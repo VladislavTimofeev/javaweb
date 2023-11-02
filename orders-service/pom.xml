@@ -26,15 +26,23 @@
         <spring-global-version>2.3.3.RELEASE</spring-global-version>
         <mysql-connector-java-version>8.0.17</mysql-connector-java-version>
         <postgres.version>42.6.0</postgres.version>
-
+        <lombok.version>1.18.24</lombok.version>
         <start-class>by.iba.application.OrdersAppRunner</start-class>
     </properties>
 
 
     <dependencies>
-
         <!-- SPRING -->
-        <!-- web -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -46,6 +54,16 @@
             <artifactId>spring-boot-starter-jdbc</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+        </dependency>
 
         <!-- validation -->
         <dependency>
@@ -54,17 +72,7 @@
             <version>${spring-global-version}</version>
         </dependency>
 
-        <!-- -->
-
-        <!-- DB DRIVER -->
-        <!--  mysql connector -->
-<!--        <dependency>-->
-<!--            <groupId>mysql</groupId>-->
-<!--            <artifactId>mysql-connector-java</artifactId>-->
-<!--            <version>${mysql-connector-java-version}</version>-->
-<!--            <scope>runtime</scope>-->
-<!--        </dependency>-->
-
+        <!-- database -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
@@ -73,10 +81,10 @@
 
 
         <!-- in-memory database -->
-<!--        <dependency>-->
-<!--            <groupId>com.h2database</groupId>-->
-<!--            <artifactId>h2</artifactId>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.h2database</groupId>-->
+        <!--            <artifactId>h2</artifactId>-->
+        <!--        </dependency>-->
 
     </dependencies>
 
@@ -87,6 +95,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-global-version}</version>
                 <configuration>
                     <mainClass>${start-class}</mainClass>
                 </configuration>

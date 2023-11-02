@@ -11,3 +11,11 @@ spring:
     url: jdbc:postgresql://localhost:5432/dlib
     username: postgres
     password: testing321
+
+# custom configuration via Configuration files
+kafka:
+  general:
+    bootstrap-servers: localhost:9092,localhost:9093,localhost:9094
+
+  orders:
+    topic: ${KAFKA_DEFAULT_TOPIC:domain-orders-topic}

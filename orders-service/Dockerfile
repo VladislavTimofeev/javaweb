@@ -21,7 +21,7 @@ WORKDIR /app
 COPY --from=maven_build /app/target/*.jar ./orders-service.jar
 
 ENTRYPOINT java -jar orders-service.jar \
-                    #--spring.kafka.bootstrap-servers=$BROKER \
-                    #--message.processing.time=$MESSAGE_PROCESSING_TIME
+                    --spring.kafka.bootstrap-servers=$BROKER \
+                    --message.processing.time=$MESSAGE_PROCESSING_TIME
 
 EXPOSE 8081

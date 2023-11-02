@@ -21,6 +21,6 @@ WORKDIR /app
 COPY --from=maven_build /app/target/*.jar ./books-service.jar
 
 ENTRYPOINT java -jar books-service.jar \
-                    #--spring.kafka.bootstrap-servers=$BROKER
+                    --spring.kafka.bootstrap-servers=$BROKER
 
 EXPOSE 8080

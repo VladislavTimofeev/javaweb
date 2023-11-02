@@ -1,4 +1,4 @@
-package by.iba.service;
+package by.iba.service.impl;
 
 import by.iba.domain.UserEntity;
 import by.iba.dto.UserDto;
@@ -6,6 +6,7 @@ import by.iba.exception.ResourceNotFoundException;
 import by.iba.exception.ServiceException;
 import by.iba.mapper.UserMapper;
 import by.iba.repository.UserRepository;
+import by.iba.service.UserService;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -35,10 +36,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto save(UserDto userDto) {
 
-        userRepository.findByEmail(userDto.getEmail())
-                .ifPresent(value -> {
-                    throw new ServiceException("This email " + value.getEmail() + " already in use");
-                });
+//        userRepository.findByEmail(userDto.getEmail())
+//                .ifPresent(value -> {
+//                    throw new ServiceException("This email " + value.getEmail() + " already in use");
+//                });
 
         UserEntity entityToSave = userMapper.convertToEntity(userDto);
         userRepository.save(entityToSave);

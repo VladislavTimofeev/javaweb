@@ -16,7 +16,7 @@ public class AuthorRepositoryImpl implements AuthorRepository {
     private static final String SELECT_FROM_AUTHORS_WHERE_ID = "select * from authors where id = ?";
     private static final String SELECT_ALL_AUTHORS = "select * from authors";
     private static final String INSERT_INTO_AUTHORS = "insert into authors (firstName, lastName," +
-            " dateOfBirth, country) values(?,?,?,?)";
+            " dateOfBirth, country, isDeleted) values(?,?,?,?,?)";
     //private static final String DELETE_AUTHOR_BY_ID = "delete from authors where id = ?";
     private static final String DELETE_AUTHOR_BY_ID = "update authors set isDeleted = true where id = ?";
     private static final String RESTORE_AUTHOR_BY_ID = "update authors set isDeleted = false where id = ?";
@@ -28,7 +28,7 @@ public class AuthorRepositoryImpl implements AuthorRepository {
     public int save(AuthorEntity author) {
         return jdbcTemplate.update(
                 INSERT_INTO_AUTHORS,
-                author.getFirstName(), author.getLastName(), author.getDateOfBirth(), author.getCountry()
+                author.getFirstName(), author.getLastName(), author.getDateOfBirth(), author.getCountry(), author.isDeleted()
         );
     }
 

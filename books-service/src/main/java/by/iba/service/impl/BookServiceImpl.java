@@ -1,4 +1,4 @@
-package by.iba.service;
+package by.iba.service.impl;
 
 import by.iba.domain.BookAuthorsEntity;
 import by.iba.domain.BookEntity;
@@ -9,6 +9,7 @@ import by.iba.mapper.BookMapper;
 import by.iba.repository.AuthorRepository;
 import by.iba.repository.BookAuthorRepository;
 import by.iba.repository.BookRepository;
+import by.iba.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
