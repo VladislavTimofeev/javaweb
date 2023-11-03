@@ -15,8 +15,7 @@ public class UserRepositoryImpl implements UserRepository {
 
     private static final String SELECT_FROM_USERS_WHERE_ID = "select * from users where id = ?";
     private static final String SELECT_ALL_USERS = "select * from users";
-    private static final String INSERT_INTO_USERS = "insert into users (firstName, lastName, age, " +
-            "email, dateOfBirth) values(?,?,?,?,?)";
+    private static final String INSERT_INTO_USERS = "insert into users (firstName, lastName, age, email, dateOfBirth) values(?,?,?,?,?)";
 
     private static final String SELECT_USER_BY_EMAIL = "select * from users where email = ?";
 
@@ -28,7 +27,8 @@ public class UserRepositoryImpl implements UserRepository {
     public int save(UserEntity user) {
         return jdbcTemplate.update(
                 INSERT_INTO_USERS,
-                new UserRowMapper()
+                user.getFirstName(),user.getLastName(),user.getAge(),user.getEmail(),user.getDateOfBirth()
+                //new UserRowMapper()
         );
     }
 

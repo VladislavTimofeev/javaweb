@@ -22,7 +22,8 @@ CREATE TABLE IF NOT EXISTS authors
     firstName varchar(30) NOT NULL,
     lastName  varchar(30) NOT NULL,
     dateOfBirth date NOT NULL,
-    country varchar(30) NOT NULL
+    country varchar(30) NOT NULL,
+    isDeleted boolean default false
 );
 
 CREATE TABLE IF NOT EXISTS books_authors
@@ -39,27 +40,3 @@ CREATE TABLE IF NOT EXISTS orders
     orderCost real NOT NULL,
     userId varchar(30) NOT NULL
 );
-
-
-
--- insert into users(id, firstName, lastName)
--- values (0, "Vasya", "Bobrikov");
-
--- books id name
--- authors id name
--- books_authors id book_id author_id
---
--- insert into books(id, name)
---     values(1,"Ball")
---
--- insert into authors(id, name)
---     values (1, "Garry")
--- insert into books_authors(id, book_id, author_id)
---     values (1, 1, 1)
---
--- SELECT *
--- FROM books b
--- INNER JOIN books_authors ba
--- ON b.id =  ba.book_id
--- INNER JOIN authors a
--- ON a.id = ba.author_id
