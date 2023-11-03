@@ -1,6 +1,8 @@
 package by.iba.kafka;
 
-import by.iba.kafka.dto.OrderDto;
+import by.iba.dto.OrderDto;
+import by.iba.service.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
@@ -11,15 +13,19 @@ public class KafkaOrdersMessageServiceConsumer {
     @Value("${message.processing.time}")
     private long processingTime;
 
+    @Autowired
+    private OrderService orderService;
+
+
     @KafkaListener(
             topics = "${kafka.orders.topic}",
             groupId = "${kafka.orders.group-id}}",
             containerFactory = "objectsKafkaListenerContainerFactory"
     )
-    void listener(OrderDto object) throws InterruptedException {
+    public void listener(OrderDto object) {
 
-        System.out.println("CustomUserListener [{}]" + object);
+        System.out.println("CustomUserListener OrderReceived [{}]" + object);
 
-        Thread.sleep(processingTime);
+        orderService.save(object);
     }
 }

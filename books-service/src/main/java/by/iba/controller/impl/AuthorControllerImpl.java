@@ -1,5 +1,6 @@
-package by.iba.controller;
+package by.iba.controller.impl;
 
+import by.iba.controller.AuthorController;
 import by.iba.domain.AuthorEntity;
 import by.iba.dto.AuthorDto;
 import by.iba.repository.AuthorRepository;

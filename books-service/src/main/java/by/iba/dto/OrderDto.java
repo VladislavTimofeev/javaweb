@@ -1,4 +1,4 @@
-package by.iba.kafka.dto;
+package by.iba.dto;
 
 import lombok.*;
 
@@ -9,9 +9,7 @@ import lombok.*;
 @Builder
 public class OrderDto implements AbstractDto {
 
-    private String id;
-    private String status;
-    private Double price;
-    private Integer number;
+    private Long userId;
+    private Long bookId;
 
 }

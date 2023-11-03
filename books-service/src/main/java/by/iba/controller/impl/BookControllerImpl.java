@@ -1,5 +1,6 @@
-package by.iba.controller;
+package by.iba.controller.impl;
 
+import by.iba.controller.BookController;
 import by.iba.dto.BookDto;
 import by.iba.service.BookService;
 import org.springframework.http.HttpHeaders;

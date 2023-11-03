@@ -13,10 +13,10 @@ public class OrderRowMapper implements RowMapper<OrderEntity> {
     public OrderEntity mapRow(ResultSet resultSet, int rowNum) throws SQLException {
 
         OrderEntity orderEntity = new OrderEntity();
-        orderEntity.setId(resultSet.getLong("id"));
-        orderEntity.setOrderDate(resultSet.getDate("orderDate"));
-        orderEntity.setOrderCost(resultSet.getDouble("orderCost"));
-        orderEntity.setUserId(resultSet.getString("userId"));
+//        orderEntity.setId(resultSet.getLong("id"));
+//        orderEntity.setOrderDate(resultSet.getDate("orderDate"));
+//        orderEntity.setOrderCost(resultSet.getDouble("orderCost"));
+//        orderEntity.setUserId(resultSet.getString("userId"));
 
         return orderEntity;
     }

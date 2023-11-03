@@ -1,6 +1,6 @@
 package by.iba.kafka.config;
 
-import by.iba.kafka.dto.AbstractDto;
+import by.iba.dto.AbstractDto;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,29 +21,6 @@ public class KafkaConsumerConfig {
     @Value("${kafka.orders.group-id}")
     private String ordersGroupId;
 
-    @Bean
-    public ConsumerFactory<String, String> consumerFactory() {
-
-        Map<String, Object> config = new HashMap<>();
-
-        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
-        config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG,
-                StringDeserializer.class);
-        config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,
-                StringDeserializer.class);
-        config.put(JsonDeserializer.TRUSTED_PACKAGES, "*");
-
-        return new DefaultKafkaConsumerFactory<>(config);
-    }
-
-    @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, String>
-    kafkaListenerContainerFactory() {
-        ConcurrentKafkaListenerContainerFactory<String, String> factory
-                = new ConcurrentKafkaListenerContainerFactory<>();
-        factory.setConsumerFactory(consumerFactory());
-        return factory;
-    }
     public ConsumerFactory<String, AbstractDto> objectsConsumerFactory() {
 
         Map<String, Object> config = new HashMap<>();

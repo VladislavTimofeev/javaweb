@@ -1,4 +1,4 @@
-package by.iba.kafka.dto;
+package by.iba.dto;
 
 import java.io.Serializable;
 
