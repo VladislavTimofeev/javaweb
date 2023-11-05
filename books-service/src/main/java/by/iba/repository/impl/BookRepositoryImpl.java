@@ -1,6 +1,7 @@
-package by.iba.repository;
+package by.iba.repository.impl;
 
 import by.iba.domain.BookEntity;
+import by.iba.repository.BookRepository;
 import by.iba.repository.mapper.BookRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;

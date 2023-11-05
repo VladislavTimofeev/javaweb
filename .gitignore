@@ -1,0 +1,86 @@
+# Backend Compiled output
+target/
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### Maven ###
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn
+mvnw
+mvnw.cmd
+
+### Java ###
+# Compiled class file
+*.class
+
+# Package Files #
+*.jar
+*.war
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+# Visual Studio Code
+.vscode/
+# Ignore .history for the xyz.local-history VSCode extension
+.history
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# UI Compiled output
+dist/
+tmp/
+out-tsc/
+bazel-out/
+
+# Node
+node_modules/
+# Ignore npm/yarn debug log
+npm-debug.log
+yarn-error.log
+
+# IDEs and editors
+.project
+.classpath
+.c9
+*.launch
+.settings
+*.sublime-workspace
+
+### STS ###
+.apt_generated
+.factorypath
+.springBeans
+.sts4-cache
+
+# Miscellaneous
+.angular/
+.sass-cache/
+connect.lock
+/coverage
+libpeerconnection.log
+testem.log
+/typings
+# User specific ng-dev settings
+.ng-dev.user*
+
+# System files
+.DS_Store
+Thumbs.db

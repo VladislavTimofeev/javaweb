@@ -15,35 +15,35 @@ services:
     volumes:
       - ./data.sql:/docker-entrypoint-initdb.d/data.sql
 
-  books-service:
-    build:
-      context: ../books-service
-      dockerfile: Dockerfile
-    ports:
-      - "8080:8080"
-    restart: always
-    depends_on:
-      - postgres
-    environment:
-      #SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/db
-      #SPRING_DATASOURCE_USERNAME: postgres
-      #SPRING_DATASOURCE_PASSWORD: testing321
-      - BROKER=host.docker.internal:29092
-
-  orders-service:
-    build:
-      context: ../orders-service
-      dockerfile: Dockerfile
-    ports:
-      - "8081:8081"
-    restart: always
-    depends_on:
-      - postgres
-    environment:
-      #SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/db
-      #SPRING_DATASOURCE_USERNAME: postgres
-      #SPRING_DATASOURCE_PASSWORD: testing321
-      - BROKER=host.docker.internal:29093
-      - MESSAGE_PROCESSING_TIME=2000
-      #BROKER: host.docker.internal:29093
-      #MESSAGE: MESSAGE_PROCESSING_TIME=2000
+#  books-service:
+#    build:
+#      context: ../books-service
+#      dockerfile: Dockerfile
+#    ports:
+#      - "8080:8080"
+#    restart: always
+#    depends_on:
+#      - postgres
+#    environment:
+#      #SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/db
+#      #SPRING_DATASOURCE_USERNAME: postgres
+#      #SPRING_DATASOURCE_PASSWORD: testing321
+#      - BROKER=host.docker.internal:29092
+#
+#  orders-service:
+#    build:
+#      context: ../orders-service
+#      dockerfile: Dockerfile
+#    ports:
+#      - "8081:8081"
+#    restart: always
+#    depends_on:
+#      - postgres
+#    environment:
+#      #SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/db
+#      #SPRING_DATASOURCE_USERNAME: postgres
+#      #SPRING_DATASOURCE_PASSWORD: testing321
+#      - BROKER=host.docker.internal:29093
+#      - MESSAGE_PROCESSING_TIME=2000
+#      #BROKER: host.docker.internal:29093
+#      #MESSAGE: MESSAGE_PROCESSING_TIME=2000

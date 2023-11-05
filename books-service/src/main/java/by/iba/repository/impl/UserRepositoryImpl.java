@@ -1,6 +1,7 @@
-package by.iba.repository;
+package by.iba.repository.impl;
 
 import by.iba.domain.UserEntity;
+import by.iba.repository.UserRepository;
 import by.iba.repository.mapper.UserRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
