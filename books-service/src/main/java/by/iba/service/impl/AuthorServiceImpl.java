@@ -6,22 +6,19 @@ import by.iba.exception.ResourceNotFoundException;
 import by.iba.mapper.AuthorMapper;
 import by.iba.repository.AuthorRepository;
 import by.iba.service.AuthorService;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 
+@AllArgsConstructor
 @Service
 @Validated
 public class AuthorServiceImpl implements AuthorService {
 
     private final AuthorMapper authorMapper;
     private final AuthorRepository authorRepository;
-
-    public AuthorServiceImpl(AuthorMapper authorMapper, AuthorRepository authorRepository) {
-        this.authorMapper = authorMapper;
-        this.authorRepository = authorRepository;
-    }
 
     @Override
     public AuthorDto save(AuthorDto authorDto) {

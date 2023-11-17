@@ -13,11 +13,11 @@ public class UserRowMapper implements RowMapper<UserEntity> {
 
         UserEntity userEntity = new UserEntity();
         userEntity.setId(rs.getLong("id"));
-        userEntity.setFirstName(rs.getString("firstName"));
-        userEntity.setLastName(rs.getString("lastName"));
+        userEntity.setFirstName(rs.getString("first_name"));
+        userEntity.setLastName(rs.getString("last_name"));
         userEntity.setAge(rs.getInt("age"));
         userEntity.setEmail(rs.getString("email"));
-        userEntity.setDateOfBirth(rs.getDate("dateOfBirth"));
+        userEntity.setDateOfBirth(rs.getDate("date_of_birth"));
 
         return userEntity;
 

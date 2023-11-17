@@ -1,20 +1,21 @@
 package by.iba.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@Setter
 public class OrderEntity {
+
     private Long id;
 
     private Date orderDate;
+
     private double orderCost;
 
     private Long userId;

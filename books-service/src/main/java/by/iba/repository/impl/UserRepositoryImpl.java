@@ -16,7 +16,7 @@ public class UserRepositoryImpl implements UserRepository {
 
     private static final String SELECT_FROM_USERS_WHERE_ID = "select * from users where id = ?";
     private static final String SELECT_ALL_USERS = "select * from users";
-    private static final String INSERT_INTO_USERS = "insert into users (firstName, lastName, age, email, dateOfBirth) values(?,?,?,?,?)";
+    private static final String INSERT_INTO_USERS = "insert into users (first_name, last_name, age, email, date_of_birth) values(?,?,?,?,?)";
 
     private static final String SELECT_USER_BY_EMAIL = "select * from users where email = ?";
 
@@ -49,8 +49,8 @@ public class UserRepositoryImpl implements UserRepository {
                 new Object[]{email},
                 (rs, rowNum) ->
                         Optional.of(new UserEntity(
-                                rs.getLong("id"), rs.getString("firstName"), rs.getString("lastName"),
-                                rs.getInt("age"), rs.getString("email"), rs.getDate("dateOfBirth")))
+                                rs.getLong("id"), rs.getString("first_name"), rs.getString("last_name"),
+                                rs.getInt("age"), rs.getString("email"), rs.getDate("date_of_birth")))
         );
     }
 
@@ -62,8 +62,8 @@ public class UserRepositoryImpl implements UserRepository {
                 new Object[]{id},
                 (rs, rowNum) ->
                         Optional.of(new UserEntity(
-                                rs.getLong("id"), rs.getString("firstName"), rs.getString("lastName"),
-                                rs.getInt("age"), rs.getString("email"), rs.getDate("dateOfBirth")))
+                                rs.getLong("id"), rs.getString("first_name"), rs.getString("last_name"),
+                                rs.getInt("age"), rs.getString("email"), rs.getDate("date_of_birth")))
         );
     }
 

@@ -1,6 +1,7 @@
 package by.iba.service;
 
 import by.iba.domain.OrderEntity;
+import by.iba.dto.KafkaOrderDto;
 import by.iba.dto.OrderDto;
 import by.iba.mapper.OrderMapper;
 import by.iba.repository.OrderRepository;
@@ -20,9 +21,9 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public OrderDto save(OrderDto orderDto) {
+    public OrderDto save(KafkaOrderDto kafkaOrderDto) {
 
-        OrderEntity entityToSave = orderMapper.convertToEntity(orderDto);
+        OrderEntity entityToSave = orderMapper.convertToEntity(kafkaOrderDto);
         orderRepository.save(entityToSave);
 
         return orderMapper.convertToDto(entityToSave);

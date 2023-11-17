@@ -1,6 +1,6 @@
 package by.iba.kafka;
 
-import by.iba.dto.OrderDto;
+import by.iba.dto.KafkaOrderDto;
 import by.iba.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,7 +22,7 @@ public class KafkaOrdersMessageServiceConsumer {
             groupId = "${kafka.orders.group-id}}",
             containerFactory = "objectsKafkaListenerContainerFactory"
     )
-    public void listener(OrderDto object) {
+    public void listener(KafkaOrderDto object) {
 
         System.out.println("CustomUserListener OrderReceived [{}]" + object);
 

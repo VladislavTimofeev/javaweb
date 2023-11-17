@@ -1,6 +1,7 @@
 package by.iba.mapper;
 
 import by.iba.domain.OrderEntity;
+import by.iba.dto.KafkaOrderDto;
 import by.iba.dto.OrderDto;
 import org.springframework.stereotype.Component;
 
@@ -12,25 +13,25 @@ public class OrderMapper {
 
     public OrderDto convertToDto(OrderEntity orderEntity) {
 
-        OrderDto orderDto = null;//new OrderDto(orderEntity.getId(), orderEntity.getOrderDate(), orderEntity.getOrderCost(), orderEntity.getUserId());
-
-        return orderDto;
+        return new OrderDto(orderEntity.getId(), orderEntity.getOrderDate(), orderEntity.getOrderCost(), orderEntity.getUserId(), orderEntity.getBookId());
     }
 
-    public OrderEntity convertToEntity(OrderDto orderDto) {
+    public OrderEntity convertToEntity(KafkaOrderDto kafkaOrderDto) {
 
         return OrderEntity.builder()
-                .userId(orderDto.getUserId())
-                .bookId(orderDto.getBookId())
+                .userId(kafkaOrderDto.getUserId())
+                .bookId(kafkaOrderDto.getBookId())
+                .orderCost(kafkaOrderDto.getBookPrice())
                 .build();
     }
 
-    public List<OrderDto> convertToList(List<OrderEntity> orders){
+    public List<OrderDto> convertToList(List<OrderEntity> orders) {
         return orders.stream()
                 .map(this::convertToDto)
                 .collect(Collectors.toList());
     }
-    public List<OrderEntity> convertToListEntity(List<OrderDto> orders){
+
+    public List<OrderEntity> convertToListEntity(List<KafkaOrderDto> orders) {
         return orders.stream()
                 .map(this::convertToEntity)
                 .collect(Collectors.toList());

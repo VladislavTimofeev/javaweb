@@ -7,9 +7,11 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class OrderDto implements AbstractDto {
+@ToString
+public class KafkaOrderDto implements AbstractDto {
 
     private Long userId;
     private Long bookId;
+    private double bookPrice;
 
 }

@@ -1,7 +1,7 @@
 package by.iba.controller.impl;
 
 import by.iba.controller.OrderController;
-import by.iba.dto.OrderDto;
+import by.iba.dto.KafkaOrderDto;
 import by.iba.service.OrderService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +16,7 @@ public class OrderControllerImpl implements OrderController {
 
 
     @Override
-    public ResponseEntity<String> save(OrderDto orderDto) {
+    public ResponseEntity<String> save(KafkaOrderDto orderDto) {
 
         orderService.processOrder(orderDto);
 

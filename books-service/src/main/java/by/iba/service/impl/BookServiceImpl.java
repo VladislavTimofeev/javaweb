@@ -10,11 +10,12 @@ import by.iba.repository.AuthorRepository;
 import by.iba.repository.BookAuthorRepository;
 import by.iba.repository.BookRepository;
 import by.iba.service.BookService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@AllArgsConstructor
 @Service
 public class BookServiceImpl implements BookService {
 
@@ -23,13 +24,6 @@ public class BookServiceImpl implements BookService {
     private final AuthorRepository authorRepository;
     private final BookAuthorRepository bookAuthorRepository;
 
-    public BookServiceImpl(BookMapper bookMapper, BookRepository bookRepository,
-                           AuthorRepository authorRepository, BookAuthorRepository bookAuthorRepository) {
-        this.bookMapper = bookMapper;
-        this.bookRepository = bookRepository;
-        this.authorRepository = authorRepository;
-        this.bookAuthorRepository = bookAuthorRepository;
-    }
 
     @Override
     public BookDto save(BookDto bookDto) {
@@ -60,7 +54,7 @@ public class BookServiceImpl implements BookService {
     public BookDto findById(Long id) {
 
         BookEntity bookEntity = bookRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Book not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Book not found " + id));
 
         return bookMapper.convertToDto(bookEntity);
     }

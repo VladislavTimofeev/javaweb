@@ -1,29 +1,30 @@
 CREATE TABLE IF NOT EXISTS users
 (
     id        SERIAL PRIMARY KEY,
-    firstName varchar(30) NOT NULL,
-    lastName  varchar(30) NOT NULL,
+    first_name varchar(30) NOT NULL,
+    last_name  varchar(30) NOT NULL,
     age integer NOT NULL,
     email varchar(30) NOT NULL,
-    dateOfBirth date NOT NULL
+    date_of_birth date NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS books
 (
     id        SERIAL PRIMARY KEY,
-    numberOfPages integer,
+    number_of_pages integer,
     title  varchar(30),
-    releaseYear integer
+    release_year integer,
+    price real
 );
 
 CREATE TABLE IF NOT EXISTS authors
 (
     id        SERIAL PRIMARY KEY,
-    firstName varchar(30) NOT NULL,
-    lastName  varchar(30) NOT NULL,
-    dateOfBirth date NOT NULL,
+    first_name varchar(30) NOT NULL,
+    last_name  varchar(30) NOT NULL,
+    date_of_birth date NOT NULL,
     country varchar(30) NOT NULL,
-    isDeleted boolean default false
+    is_deleted boolean default false
 );
 
 CREATE TABLE IF NOT EXISTS books_authors
@@ -36,7 +37,8 @@ CREATE TABLE IF NOT EXISTS books_authors
 CREATE TABLE IF NOT EXISTS orders
 (
     id        SERIAL PRIMARY KEY,
-    orderDate date NOT NULL,
-    orderCost real NOT NULL,
-    userId varchar(30) NOT NULL
+    order_date date NOT NULL,
+    order_cost real NOT NULL,
+    user_id varchar(30) NOT NULL,
+    book_id varchar(30) NOT NULL
 );
