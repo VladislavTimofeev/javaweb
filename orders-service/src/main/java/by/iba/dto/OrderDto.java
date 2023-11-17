@@ -1,21 +1,26 @@
 package by.iba.dto;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
+
+import java.util.Date;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-@ToString
 public class OrderDto implements AbstractDto {
 
+    private Long id;
+
+    private Date orderDate;
+
+    private double orderCost;
+
     private Long userId;
+
     private Long bookId;
 
 }

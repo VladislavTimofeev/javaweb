@@ -12,11 +12,11 @@ public class AuthorRowMapper implements RowMapper<AuthorEntity> {
 
         AuthorEntity authorEntity = new AuthorEntity();
         authorEntity.setId(rs.getLong("id"));
-        authorEntity.setFirstName(rs.getString("firstName"));
-        authorEntity.setLastName(rs.getString("lastName"));
-        authorEntity.setDateOfBirth(rs.getDate("dateOfBirth"));
+        authorEntity.setFirstName(rs.getString("first_name"));
+        authorEntity.setLastName(rs.getString("last_name"));
+        authorEntity.setDateOfBirth(rs.getDate("date_of_birth"));
         authorEntity.setCountry(rs.getString("country"));
-        authorEntity.setDeleted(rs.getBoolean("isDeleted"));
+        authorEntity.setDeleted(rs.getBoolean("is_deleted"));
 
         return authorEntity;
     }

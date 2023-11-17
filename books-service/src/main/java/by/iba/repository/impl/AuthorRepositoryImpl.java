@@ -17,11 +17,11 @@ public class AuthorRepositoryImpl implements AuthorRepository {
 
     private static final String SELECT_FROM_AUTHORS_WHERE_ID = "select * from authors where id = ?";
     private static final String SELECT_ALL_AUTHORS = "select * from authors";
-    private static final String INSERT_INTO_AUTHORS = "insert into authors (firstName, lastName," +
-            " dateOfBirth, country, isDeleted) values(?,?,?,?,?)";
+    private static final String INSERT_INTO_AUTHORS = "insert into authors (first_name, last_name," +
+            " date_of_birth, country, is_deleted) values(?,?,?,?,?)";
     //private static final String DELETE_AUTHOR_BY_ID = "delete from authors where id = ?";
-    private static final String DELETE_AUTHOR_BY_ID = "update authors set isDeleted = true where id = ?";
-    private static final String RESTORE_AUTHOR_BY_ID = "update authors set isDeleted = false where id = ?";
+    private static final String DELETE_AUTHOR_BY_ID = "update authors set is_deleted = true where id = ?";
+    private static final String RESTORE_AUTHOR_BY_ID = "update authors set is_deleted = false where id = ?";
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -49,8 +49,8 @@ public class AuthorRepositoryImpl implements AuthorRepository {
                 new Object[]{id},
                 (rs, rowNum) ->
                         Optional.of(new AuthorEntity(
-                                rs.getLong("id"), rs.getString("firstName"), rs.getString("lastName"),
-                                rs.getDate("dateOfBirth"), rs.getString("country"), rs.getBoolean("isDeleted")))
+                                rs.getLong("id"), rs.getString("first_name"), rs.getString("last_name"),
+                                rs.getDate("date_of_birth"), rs.getString("country"), rs.getBoolean("is_deleted")))
         );
     }
 

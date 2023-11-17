@@ -3,6 +3,7 @@ package by.iba.controller.impl;
 import by.iba.controller.BookController;
 import by.iba.dto.BookDto;
 import by.iba.service.BookService;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,15 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.List;
-
+@AllArgsConstructor
 @RestController
 public class BookControllerImpl implements BookController {
 
     private final BookService bookService;
-
-    public BookControllerImpl(BookService bookService) {
-        this.bookService = bookService;
-    }
 
     @Override
     public ResponseEntity<BookDto> findBookById(@PathVariable Long id) {

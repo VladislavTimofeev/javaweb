@@ -14,9 +14,9 @@ public class BookRowMapper implements RowMapper<BookEntity> {
 
         BookEntity bookEntity = new BookEntity();
         bookEntity.setId(rs.getLong("id"));
-        bookEntity.setNumberOfPages(rs.getInt("numberOfPages"));
+        bookEntity.setNumberOfPages(rs.getInt("number_of_pages"));
         bookEntity.setTitle(rs.getString("title"));
-        bookEntity.setReleaseYear(rs.getInt("releaseYear"));
+        bookEntity.setReleaseYear(rs.getInt("release_year"));
 
         return bookEntity;
     }

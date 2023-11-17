@@ -3,6 +3,7 @@ package by.iba.controller.impl;
 import by.iba.controller.UserController;
 import by.iba.dto.UserDto;
 import by.iba.service.UserService;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,14 +14,11 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.List;
 
+@AllArgsConstructor
 @RestController
 public class UserControllerImpl implements UserController {
 
     private final UserService userService;
-
-    public UserControllerImpl(UserService userService) {
-        this.userService = userService;
-    }
 
     @Override
     public ResponseEntity<UserDto> getUserById(@PathVariable Long id) {

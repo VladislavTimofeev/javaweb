@@ -4,13 +4,10 @@ import by.iba.domain.BookEntity;
 import by.iba.repository.BookRepository;
 import by.iba.repository.mapper.BookRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
-import java.sql.PreparedStatement;
-import java.sql.Statement;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,6 +15,8 @@ import java.util.Optional;
 public class BookRepositoryImpl implements BookRepository {
 
     private static final String SELECT_FROM_BOOKS_WHERE_ID = "select * from books where id = ?";
+    private static final String INSERT_INTO_BOOKS = "insert into books (number_of_pages, title, release_year, price) values(?,?,?,?)";
+    private static final String SELECT_BOOKS = "select * from books";
 
     private static final String SELECT_ALL_BOOKS = "SELECT * " +
             "FROM books b " +
@@ -29,40 +28,40 @@ public class BookRepositoryImpl implements BookRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-
     @Override
     public long save(BookEntity book) {
-        KeyHolder keyHolder = new GeneratedKeyHolder();
-        String sql = "insert into books (numberOfPages, title, releaseYear) values(?,?,?)";
-        jdbcTemplate.update(connection -> {
-            PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, book.getNumberOfPages());
-            ps.setString(2, book.getTitle());
-            ps.setInt(3,book.getReleaseYear());
-            return ps;
-        }, keyHolder);
-        return Long.valueOf(String.valueOf(keyHolder.getKey()));
+        return jdbcTemplate.update(
+                INSERT_INTO_BOOKS,
+                book.getNumberOfPages(), book.getTitle(), book.getReleaseYear(), book.getPrice()
+        );
     }
 
     @Override
     public List<BookEntity> findAll() {
         return jdbcTemplate.query(
-                SELECT_ALL_BOOKS,
+                SELECT_BOOKS,
                 new BookRowMapper()
         );
     }
 
     @Override
     public Optional<BookEntity> findById(Long id) {
-        return jdbcTemplate.queryForObject(
-                SELECT_FROM_BOOKS_WHERE_ID,
-                new Object[]{id},
-                (rs, rowNum) ->
-                        Optional.of(new BookEntity(
-                                rs.getLong("id"), rs.getInt("numberOfPages"),
-                                rs.getString("title"), rs.getInt("releaseYear")
-                        ))
-        );
+        try {
+            return jdbcTemplate.queryForObject(
+                    SELECT_FROM_BOOKS_WHERE_ID,
+                    new Object[]{id},
+                    (rs, rowNum) ->
+                            Optional.of(new BookEntity(
+                                    rs.getLong("id"), rs.getInt("number_of_pages"),
+                                    rs.getString("title"), rs.getInt("release_year"),
+                                    rs.getDouble("price")
+                            ))
+            );
+        } catch (DataAccessException e) {
+//            throw new RepositoryException(e);
+            System.err.println(e);
+            return Optional.empty();
+        }
     }
 
 }

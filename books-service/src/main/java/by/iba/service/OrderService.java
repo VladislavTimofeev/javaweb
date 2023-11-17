@@ -1,8 +1,8 @@
 package by.iba.service;
 
-import by.iba.dto.OrderDto;
+import by.iba.dto.KafkaOrderDto;
 
 public interface OrderService {
 
-    void processOrder(OrderDto orderDto);
+    void processOrder(KafkaOrderDto orderDto);
 }

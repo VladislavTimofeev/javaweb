@@ -2,21 +2,19 @@ package by.iba.mapper;
 
 import by.iba.domain.BookEntity;
 import by.iba.dto.BookDto;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@AllArgsConstructor
 @Component
 public class BookMapper {
 
     @Autowired
     private final AuthorMapper authorMapper;
-
-    public BookMapper(AuthorMapper authorMapper) {
-        this.authorMapper = authorMapper;
-    }
 
     public BookDto convertToDto(BookEntity book) {
 
@@ -26,6 +24,7 @@ public class BookMapper {
         bookDto.setNumberOfPages(book.getNumberOfPages());
         bookDto.setTitle(book.getTitle());
         bookDto.setReleaseYear(book.getReleaseYear());
+        bookDto.setPrice(book.getPrice());
         bookDto.setAuthors(authorMapper.convertToList(book.getAuthors()));
 
         return bookDto;
@@ -39,6 +38,7 @@ public class BookMapper {
         bookEntity.setNumberOfPages(bookDto.getNumberOfPages());
         bookEntity.setTitle(bookDto.getTitle());
         bookEntity.setReleaseYear(bookDto.getReleaseYear());
+        bookEntity.setPrice(bookDto.getPrice());
         bookEntity.setAuthors(authorMapper.convertToListEntity(bookDto.getAuthors()));
 
         return bookEntity;
@@ -50,8 +50,4 @@ public class BookMapper {
                 .collect(Collectors.toList());
     }
 
-    /*
-    здесь все перенести на сеттеры, чтобы не использовать комструкторы, все кроме листа
-
-     */
 }
