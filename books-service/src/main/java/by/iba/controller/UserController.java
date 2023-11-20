@@ -1,21 +1,22 @@
 package by.iba.controller;
 
-import by.iba.dto.UserDto;
-import org.springframework.http.ResponseEntity;
+import by.iba.domain.UserEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
-@RequestMapping(path = "/api/v1/users")
+@RequestMapping(path="/api/v1/users")
 public interface UserController {
 
-    @GetMapping("/{id}")
-    ResponseEntity<UserDto> getUserById(@PathVariable Long id);
-
     @GetMapping
-    ResponseEntity<List<UserDto>> findAll();
+    List<UserEntity> getAllUsers();
+
+    @GetMapping("/{id}")
+    UserEntity getUserById(@PathVariable Long id);
 
     @PostMapping
-    ResponseEntity<UserDto> save(@RequestBody UserDto userDto);
+    void saveUser(@RequestBody UserEntity userEntity);
+
+    @DeleteMapping("/{id}")
+    void deleteUser(@PathVariable Long id);
 
 }

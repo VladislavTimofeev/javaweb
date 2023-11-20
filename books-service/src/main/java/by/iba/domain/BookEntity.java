@@ -5,27 +5,28 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
+@Table(name = "books")
 public class BookEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(name = "number_of_pages")
     private int numberOfPages;
+    @Column(name = "title")
     private String title;
+    @Column(name = "release_year")
     private int releaseYear;
+    @Column(name = "price")
     private double price;
-    private List<AuthorEntity> authors = new ArrayList<>();
 
-    public BookEntity(long id, int numberOfPages, String title, int releaseYear, double price) {
-        this.id = id;
-        this.numberOfPages = numberOfPages;
-        this.title = title;
-        this.releaseYear = releaseYear;
-        this.price = price;
-    }
+    //private List<AuthorEntity> authors = new ArrayList<>();
+
 }

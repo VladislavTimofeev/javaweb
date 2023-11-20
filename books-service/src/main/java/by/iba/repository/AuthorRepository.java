@@ -1,19 +1,10 @@
 package by.iba.repository;
 
 import by.iba.domain.AuthorEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
-import java.util.Optional;
+@Repository
+public interface AuthorRepository extends JpaRepository<AuthorEntity, Long> {
 
-public interface AuthorRepository {
-
-    int save(AuthorEntity author);
-
-    List<AuthorEntity> findAll();
-
-    Optional<AuthorEntity> findById(Long id);
-
-    AuthorEntity deleteAuthorById(Long id);
-
-    AuthorEntity restoreAuthorById(Long id);
 }

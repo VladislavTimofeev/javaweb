@@ -1,11 +1,17 @@
 package by.iba.service;
 
-import by.iba.dto.KafkaOrderDto;
-import by.iba.dto.OrderDto;
+import by.iba.domain.OrderEntity;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface OrderService {
-    OrderDto save(KafkaOrderDto kafkaOrderDto);
-    List<OrderDto> findAll();
+
+    OrderEntity saveOrder(OrderEntity orderEntity);
+
+    List<OrderEntity> getAllOrders();
+
+    Optional<OrderEntity> getOrderById(Long id);
+
+    void deleteOrder(Long id);
 }

@@ -1,14 +1,17 @@
 package by.iba.service;
 
-import by.iba.dto.BookDto;
+import by.iba.domain.BookEntity;
 
 import java.util.List;
 
 public interface BookService {
 
-    BookDto save(BookDto bookDto);
+    List<BookEntity> getAllBooks();
 
-    List<BookDto> findAll();
+    BookEntity getBookById(Long id);
 
-    BookDto findById(Long id);
+    void saveBook(BookEntity bookEntity);
+
+    void deleteBook(Long id);
+
 }
