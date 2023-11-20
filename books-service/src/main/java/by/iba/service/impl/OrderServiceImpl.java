@@ -1,6 +1,6 @@
 package by.iba.service.impl;
 
-import by.iba.dto.BookDto;
+import by.iba.domain.BookEntity;
 import by.iba.dto.KafkaOrderDto;
 import by.iba.exception.ResourceNotFoundException;
 import by.iba.kafka.KafkaProducerService;
@@ -25,7 +25,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void processOrder(KafkaOrderDto orderDto) throws ResourceNotFoundException {
 
-        BookDto bookDto = bookService.findById(orderDto.getBookId());
+        BookEntity bookDto = bookService.getBookById(orderDto.getBookId());
 
         orderDto.setBookPrice(bookDto.getPrice());
 

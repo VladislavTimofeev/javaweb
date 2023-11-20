@@ -1,62 +1,37 @@
 package by.iba.service.impl;
 
 import by.iba.domain.AuthorEntity;
-import by.iba.dto.AuthorDto;
-import by.iba.exception.ResourceNotFoundException;
-import by.iba.mapper.AuthorMapper;
 import by.iba.repository.AuthorRepository;
 import by.iba.service.AuthorService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
+import java.util.Optional;
 
 @AllArgsConstructor
 @Service
-@Validated
 public class AuthorServiceImpl implements AuthorService {
 
-    private final AuthorMapper authorMapper;
     private final AuthorRepository authorRepository;
 
     @Override
-    public AuthorDto save(AuthorDto authorDto) {
-
-        AuthorEntity entityToSave = authorMapper.convertToEntity(authorDto);
-        authorRepository.save(entityToSave);
-
-        return authorMapper.convertToDto(entityToSave);
+    public List<AuthorEntity> getAllAuthors() {
+        return authorRepository.findAll();
     }
 
     @Override
-    public List<AuthorDto> findAll() {
-        List<AuthorEntity> authors = authorRepository.findAll();
-        return authorMapper.convertToList(authors);
+    public Optional<AuthorEntity> getAuthorById(Long id) {
+        return authorRepository.findById(id);
     }
 
     @Override
-    public AuthorDto findById(Long id) {
-
-        AuthorEntity authorEntity = authorRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Author not found"));
-
-        return authorMapper.convertToDto(authorEntity);
+    public void saveAuthor(AuthorEntity authorEntity) {
+        authorRepository.save(authorEntity);
     }
 
     @Override
-    public AuthorDto deleteAuthorById(Long id) {
-
-        AuthorEntity authorEntity = authorRepository.deleteAuthorById(id);
-
-        return authorMapper.convertToDto(authorEntity);
-    }
-
-    @Override
-    public AuthorDto restoreAuthorById(Long id) {
-
-        AuthorEntity authorEntity = authorRepository.restoreAuthorById(id);
-
-        return authorMapper.convertToDto(authorEntity);
+    public void deleteAuthor(Long id) {
+        authorRepository.deleteById(id);
     }
 }

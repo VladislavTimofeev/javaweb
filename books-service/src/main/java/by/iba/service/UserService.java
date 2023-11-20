@@ -1,15 +1,17 @@
 package by.iba.service;
 
-import by.iba.dto.UserDto;
+import by.iba.domain.UserEntity;
 
-import javax.validation.Valid;
 import java.util.List;
 
 public interface UserService {
 
-    UserDto findById(Long id);
+    List<UserEntity> getAllUsers();
 
-    UserDto save(@Valid UserDto userDto);
+    UserEntity getUserById(Long id);
 
-    List<UserDto> findAll();
+    void saveUser(UserEntity userEntity);
+
+    void deleteUser(Long id);
+
 }

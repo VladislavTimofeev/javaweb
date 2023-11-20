@@ -1,26 +1,23 @@
 package by.iba.controller;
 
-import by.iba.dto.AuthorDto;
-import org.springframework.http.ResponseEntity;
+import by.iba.domain.AuthorEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RequestMapping(path = "/api/v1/authors")
 public interface AuthorController {
+    @GetMapping
+    List<AuthorEntity> getAllAuthors();
 
     @GetMapping("/{id}")
-    ResponseEntity<AuthorDto> findAuthorById(@PathVariable Long id);
-
-    @GetMapping
-    ResponseEntity<List<AuthorDto>> findAll();
+    Optional<AuthorEntity> getAuthorById(@PathVariable Long id);
 
     @PostMapping
-    ResponseEntity<AuthorDto> save(@RequestBody AuthorDto authorDto);
+    void saveAuthor(@RequestBody AuthorEntity authorEntity);
 
     @DeleteMapping("/{id}")
-    ResponseEntity<AuthorDto> deleteAuthorById(@PathVariable Long id);
+    void deleteAuthor(@PathVariable Long id);
 
-    @PatchMapping("/{id}")
-    ResponseEntity<AuthorDto> restoreAuthorById(@PathVariable Long id);
 }

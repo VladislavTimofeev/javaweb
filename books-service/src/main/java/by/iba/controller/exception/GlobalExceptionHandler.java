@@ -1,4 +1,4 @@
-package by.iba.controller;
+package by.iba.controller.exception;
 
 import by.iba.exception.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;

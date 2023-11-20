@@ -1,37 +1,36 @@
 package by.iba.service;
 
 import by.iba.domain.OrderEntity;
-import by.iba.dto.KafkaOrderDto;
-import by.iba.dto.OrderDto;
-import by.iba.mapper.OrderMapper;
 import by.iba.repository.OrderRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
+@AllArgsConstructor
 @Service
 public class OrderServiceImpl implements OrderService {
 
-    private final OrderMapper orderMapper;
     private final OrderRepository orderRepository;
 
-    public OrderServiceImpl(OrderMapper orderMapper, OrderRepository orderRepository) {
-        this.orderMapper = orderMapper;
-        this.orderRepository = orderRepository;
+    @Override
+    public OrderEntity saveOrder(OrderEntity orderEntity) {
+        return orderRepository.save(orderEntity);
     }
 
     @Override
-    public OrderDto save(KafkaOrderDto kafkaOrderDto) {
-
-        OrderEntity entityToSave = orderMapper.convertToEntity(kafkaOrderDto);
-        orderRepository.save(entityToSave);
-
-        return orderMapper.convertToDto(entityToSave);
+    public List<OrderEntity> getAllOrders() {
+        return orderRepository.findAll();
     }
 
     @Override
-    public List<OrderDto> findAll() {
-        List<OrderEntity> orderEntities = orderRepository.findAll();
-        return orderMapper.convertToList(orderEntities);
+    public Optional<OrderEntity> getOrderById(Long id) {
+        return orderRepository.findById(id);
+    }
+
+    @Override
+    public void deleteOrder(Long id) {
+        orderRepository.deleteById(id);
     }
 }
