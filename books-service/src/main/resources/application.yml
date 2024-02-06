@@ -4,6 +4,9 @@ server:
 ##################### SPRING GLOBAL #################################
 spring:
   ##################### DATA SOURCE #################################
+  thymeleaf:
+    enabled: true
+
   datasource:
     driver-class-name: org.postgresql.Driver
     initialization-mode: always

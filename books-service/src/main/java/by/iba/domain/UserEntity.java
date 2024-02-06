@@ -25,8 +25,10 @@ public class UserEntity {
     private String lastName;
     @Column(name = "age")
     private int age;
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     private String email;
+    @Column(name = "password")
+    private String password;
     @Column(name = "date_of_birth")
     private Date dateOfBirth;
 

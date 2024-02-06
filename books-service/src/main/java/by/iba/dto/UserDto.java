@@ -8,6 +8,7 @@ import lombok.Setter;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Date;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -27,6 +28,9 @@ public class UserDto implements Serializable {
     @NotEmpty(message = "The email address is required.")
     @Email(message = "The email address is invalid.")
     private String email;
+    @NotBlank(message = "The password is required.")
+    @Size(min = 3, max = 30)
+    private String password;
     @NotNull(message = "The date of birth is required.")
     @Past(message = "The date of birth must be in the past.")
     private Date dateOfBirth;
