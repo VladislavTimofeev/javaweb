@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface UserService {
 
-    UserEntity loginUser(UserDto userDto);
+    UserDto loginUser(UserDto userDto);
 
-    UserEntity registerUser(UserDto userDto);
+    UserDto registerUser(UserDto userDto);
 
     List<UserEntity> getAllUsers();
 

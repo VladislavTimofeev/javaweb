@@ -18,14 +18,14 @@ public class UserControllerImpl implements UserController {
     private final UserService userService;
 
     @Override
-    public ResponseEntity<UserEntity> registerUser(UserDto userDto) {
-        UserEntity newUser = userService.registerUser(userDto);
+    public ResponseEntity<UserDto> registerUser(UserDto userDto) {
+        UserDto newUser = userService.registerUser(userDto);
         return new ResponseEntity<>(newUser, HttpStatus.CREATED);
     }
 
     @Override
-    public ResponseEntity<UserEntity> loginUser(UserDto userDto) {
-        UserEntity user = userService.loginUser(userDto);
+    public ResponseEntity<UserDto> loginUser(UserDto userDto) {
+        UserDto user = userService.loginUser(userDto);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 

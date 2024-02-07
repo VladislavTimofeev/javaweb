@@ -10,10 +10,10 @@ import java.util.List;
 public interface UserController {
 
     @PostMapping("/register")
-    ResponseEntity<UserEntity> registerUser(@RequestBody UserDto userDto);
+    ResponseEntity<UserDto> registerUser(@RequestBody UserDto userDto);
 
     @PostMapping("/login")
-    ResponseEntity<UserEntity> loginUser(@RequestBody UserDto userDto);
+    ResponseEntity<UserDto> loginUser(@RequestBody UserDto userDto);
 
     @GetMapping
     List<UserEntity> getAllUsers();
