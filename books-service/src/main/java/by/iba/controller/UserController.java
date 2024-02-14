@@ -5,15 +5,16 @@ import by.iba.dto.UserDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
-@RequestMapping(path="/api/v1/users")
-public interface UserController {
 
+@RequestMapping(path = "/api/v1/users")
+public interface UserController {
     @PostMapping("/register")
-    ResponseEntity<UserDto> registerUser(@RequestBody UserDto userDto);
+    ResponseEntity<UserDto> registerUser(@RequestBody @Valid UserDto userDto);
 
     @PostMapping("/login")
-    ResponseEntity<UserDto> loginUser(@RequestBody UserDto userDto);
+    ResponseEntity<UserDto> loginUser(@RequestBody @Valid UserDto userDto);
 
     @GetMapping
     List<UserEntity> getAllUsers();
