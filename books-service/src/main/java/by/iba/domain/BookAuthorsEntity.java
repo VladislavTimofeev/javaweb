@@ -15,9 +15,4 @@ public class BookAuthorsEntity {
     private Long bookId;
     private Long authorId;
 
-    public BookAuthorsEntity(Long bookId, Long authorId) {
-        this.bookId = bookId;
-        this.authorId = authorId;
-    }
-
 }

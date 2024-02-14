@@ -2,34 +2,46 @@ package by.iba.mapper;
 
 import by.iba.domain.UserEntity;
 import by.iba.dto.UserDto;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Component
 public class UserMapper {
 
+    public static UserDto convertToDto(UserEntity userEntity) {
 
-    public UserDto convertToDto(UserEntity user) {
+        UserDto userDto = new UserDto();
 
-        UserDto userDto = new UserDto(user.getId(), user.getFirstName(), user.getLastName(),
-                user.getAge(), user.getEmail(), user.getDateOfBirth());
+        userDto.setId(userEntity.getId());
+        userDto.setFirstName(userEntity.getFirstName());
+        userDto.setLastName(userEntity.getLastName());
+        userDto.setAge(userEntity.getAge());
+        userDto.setEmail(userEntity.getEmail());
+        userDto.setDateOfBirth(userEntity.getDateOfBirth());
+        userDto.setPassword(userEntity.getPassword());
 
         return userDto;
     }
 
-    public UserEntity convertToEntity(UserDto userDto) {
+    public static UserEntity convertToEntity(UserDto userDto) {
 
-        UserEntity userEntity = new UserEntity(userDto.getId(), userDto.getFirstName(), userDto.getLastName(),
-                userDto.getAge(), userDto.getEmail(), userDto.getDateOfBirth());
+        UserEntity userEntity = new UserEntity();
+
+        userEntity.setId(userDto.getId());
+        userEntity.setFirstName(userDto.getFirstName());
+        userEntity.setLastName(userDto.getLastName());
+        userEntity.setAge(userDto.getAge());
+        userEntity.setEmail(userDto.getEmail());
+        userEntity.setDateOfBirth(userDto.getDateOfBirth());
+        userEntity.setPassword(userDto.getPassword());
 
         return userEntity;
     }
 
-    public List<UserDto> convertToList(List<UserEntity> users) {
-        return users.stream()
-                .map(this::convertToDto)
+    public static List<UserDto> convertToList(List<UserEntity> userEntities) {
+        return userEntities.stream()
+                .map(UserMapper::convertToDto)
                 .collect(Collectors.toList());
     }
+
 }

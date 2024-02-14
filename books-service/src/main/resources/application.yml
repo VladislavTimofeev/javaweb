@@ -4,6 +4,11 @@ server:
 ##################### SPRING GLOBAL #################################
 spring:
   ##################### DATA SOURCE #################################
+  thymeleaf:
+    enabled: true
+    prefix: classpath:/templates/
+    suffix: .html
+
   datasource:
     driver-class-name: org.postgresql.Driver
     initialization-mode: always
@@ -11,6 +16,14 @@ spring:
     url: jdbc:postgresql://localhost:5432/db
     username: postgres
     password: testing321
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
 
 # custom configuration via Configuration files
 kafka:

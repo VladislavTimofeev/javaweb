@@ -1,17 +1,12 @@
 package by.iba.repository;
 
 import by.iba.domain.UserEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.Optional;
 
-public interface UserRepository {
-
-    Optional<UserEntity> findById(Long id);
-
-    int save(UserEntity user);
-
-    List<UserEntity> findAll();
-
+@Repository
+public interface UserRepository extends JpaRepository<UserEntity, Long> {
     Optional<UserEntity> findByEmail(String email);
 }

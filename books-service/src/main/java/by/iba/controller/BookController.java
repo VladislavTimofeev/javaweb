@@ -1,7 +1,6 @@
 package by.iba.controller;
 
-import by.iba.dto.BookDto;
-import org.springframework.http.ResponseEntity;
+import by.iba.domain.BookEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -9,13 +8,16 @@ import java.util.List;
 @RequestMapping(path = "/api/v1/books")
 public interface BookController {
 
-    @GetMapping("/{id}")
-    ResponseEntity<BookDto> findBookById(@PathVariable Long id);
-
     @GetMapping
-    ResponseEntity<List<BookDto>> findAll();
+    List<BookEntity> getAllBooks();
+
+    @GetMapping("/{id}")
+    BookEntity getBookById(@PathVariable Long id);
 
     @PostMapping
-    ResponseEntity<BookDto> save(@RequestBody BookDto bookDto);
+    void saveBook(@RequestBody BookEntity bookEntity);
+
+    @DeleteMapping("/{id}")
+    void deleteBook(@PathVariable Long id);
 
 }

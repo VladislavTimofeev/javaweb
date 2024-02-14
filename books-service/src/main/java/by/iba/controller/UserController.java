@@ -1,21 +1,31 @@
 package by.iba.controller;
 
+import by.iba.domain.UserEntity;
 import by.iba.dto.UserDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RequestMapping(path = "/api/v1/users")
 public interface UserController {
+    @PostMapping("/register")
+    ResponseEntity<UserDto> registerUser(@RequestBody @Valid UserDto userDto);
 
-    @GetMapping("/{id}")
-    ResponseEntity<UserDto> getUserById(@PathVariable Long id);
+    @PostMapping("/login")
+    ResponseEntity<UserDto> loginUser(@RequestBody @Valid UserDto userDto);
 
     @GetMapping
-    ResponseEntity<List<UserDto>> findAll();
+    List<UserEntity> getAllUsers();
+
+    @GetMapping("/{id}")
+    UserEntity getUserById(@PathVariable Long id);
 
     @PostMapping
-    ResponseEntity<UserDto> save(@RequestBody UserDto userDto);
+    void saveUser(@RequestBody UserEntity userEntity);
+
+    @DeleteMapping("/{id}")
+    void deleteUser(@PathVariable Long id);
 
 }

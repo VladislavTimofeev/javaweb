@@ -1,19 +1,18 @@
 package by.iba.service;
 
-import by.iba.dto.AuthorDto;
+import by.iba.domain.AuthorEntity;
 
-import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 public interface AuthorService {
 
-    AuthorDto save(@Valid AuthorDto authorDto);
+    List<AuthorEntity> getAllAuthors();
 
-    List<AuthorDto> findAll();
+    Optional<AuthorEntity> getAuthorById(Long id);
 
-    AuthorDto findById(Long id);
+    void saveAuthor(AuthorEntity authorEntity);
 
-    AuthorDto deleteAuthorById( Long id);
+    void deleteAuthor(Long id);
 
-    AuthorDto restoreAuthorById(Long id);
 }
