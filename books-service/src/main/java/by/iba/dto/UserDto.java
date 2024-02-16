@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
@@ -34,5 +35,5 @@ public class UserDto implements Serializable {
     private String password;
     @NotNull(message = "The date of birth is required.")
     @Past(message = "The date of birth must be in the past.")
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
 }

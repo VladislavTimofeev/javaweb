@@ -7,18 +7,45 @@ import by.iba.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
 @AllArgsConstructor
-@RestController
+@Controller
 @Validated
 public class UserControllerImpl implements UserController {
 
     private final UserService userService;
 
+    @RequestMapping(value = "/register")
+    public String register() {
+        return "register";
+    }
+
+    @RequestMapping(value = "/login")
+    public String login() {
+        return "login";
+    }
+
+    @GetMapping("/users")
+    public String getUsers(Model model) {
+        List<UserEntity> users = userService.getAllUsers();
+        model.addAttribute("users", users);
+        return "users";
+    }
+
+    @GetMapping("/")
+    public String homePage() {
+        return "index";
+    }
+
+    @PostMapping("/register")
     @Override
     public ResponseEntity<UserDto> registerUser(UserDto userDto) {
         UserDto newUser = userService.registerUser(userDto);
@@ -29,11 +56,6 @@ public class UserControllerImpl implements UserController {
     public ResponseEntity<UserDto> loginUser(UserDto userDto) {
         UserDto user = userService.loginUser(userDto);
         return new ResponseEntity<>(user, HttpStatus.OK);
-    }
-
-    @Override
-    public List<UserEntity> getAllUsers() {
-        return userService.getAllUsers();
     }
 
     @Override

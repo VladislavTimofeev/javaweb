@@ -6,9 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
-@RequestMapping(path = "/api/v1/users")
+@RequestMapping(path = "/")
 public interface UserController {
     @PostMapping("/register")
     ResponseEntity<UserDto> registerUser(@RequestBody @Valid UserDto userDto);
@@ -16,16 +15,13 @@ public interface UserController {
     @PostMapping("/login")
     ResponseEntity<UserDto> loginUser(@RequestBody @Valid UserDto userDto);
 
-    @GetMapping
-    List<UserEntity> getAllUsers();
-
-    @GetMapping("/{id}")
+    @GetMapping("/id")
     UserEntity getUserById(@PathVariable Long id);
 
-    @PostMapping
+    @PostMapping("/users")
     void saveUser(@RequestBody UserEntity userEntity);
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/id")
     void deleteUser(@PathVariable Long id);
 
 }
